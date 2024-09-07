@@ -50,6 +50,13 @@ class ImageGS(nn.Module):
         x_color = x_color.view(*x.shape[:2], *x_color.shape[1:]) # [batch_size, num, color]
 
         return x_color
+    
+    def to(self, device):
+        # 显式地将图像张量和梯度矩阵移动到设备上
+        self.image_tensor = self.image_tensor.to(device)
+        self.grad_matrix = self.grad_matrix.to(device)
+
+        return super(ImageGS, self).to(device)
 
 
 if __name__=='__main__':

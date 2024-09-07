@@ -39,8 +39,7 @@ def scaled_coords(coords, size):
     return u
 
 def compute_l1_loss(tensor1, tensor2):
-    # 将张量从 [h, w, 3] 转换为 [3, h, w]
-    tensor1 = tensor1.permute(2, 0, 1)
+    tensor1 = tensor1.permute(2, 0, 1) # [3, h, w]
     
     # 确保两个张量的形状相同
     assert tensor1.shape == tensor2.shape, "两个张量的形状必须相同"

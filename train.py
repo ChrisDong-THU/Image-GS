@@ -47,8 +47,11 @@ for epoch in range(2001):
     if epoch%250 == 0 and epoch >= 1:
         recon_img = gaussian_2d_splatting(*model.img_size, model) # 支持超分辨率渲染
         save_img(recon_img, epoch, loss)
-        loss_matrix = compute_l1_loss(recon_img, model.image_tensor)
-        model.add_params(0, 250, loss_matrix.to('cpu'))
+        if epoch<1000 :
+            loss_matrix = compute_l1_loss(recon_img, model.image_tensor)
+            model.add_params(0, 250, loss_matrix.to('cpu'))
+        else:
+            lr = lr*0.1
         optimizer = optim.Adam([
             {'params': model.u, 'lr': lr[0]},  # u
             {'params': model.t, 'lr': lr[1]},   # t

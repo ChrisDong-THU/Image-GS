@@ -2,7 +2,7 @@ import torch
 import torch.nn.functional as F
 from PIL import Image
 
-from utils import scaled_coords
+from .utils import scaled_coords
 
 def gaussian_2d_splatting(h, w, model):
     # 获取设备并切换到 CPU

@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 
-from gaussian import gaussian_2d
-from utils import read_img, gen_grad, sample_coords, scaled_coords
+from .gaussian import gaussian_2d
+from .utils import read_img, gen_grad, sample_coords, scaled_coords
 
 
 class ImageGS(nn.Module):

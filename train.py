@@ -4,9 +4,9 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 import numpy as np
 
-from model import ImageGS
-from utils import compute_l1_loss, read_img, sample_coords, gen_grad
-from render import gaussian_2d_splatting, save_img
+from model.model import ImageGS
+from model.utils import compute_l1_loss, read_img, sample_coords, gen_grad
+from model.render import gaussian_2d_splatting, save_img
 
 filename = './data/ewm_1000.jpg'
 

@@ -5,13 +5,10 @@ from torch.utils.data import DataLoader
 import numpy as np
 
 from model import ImageGS
-from dataset import ImageData
 from utils import compute_l1_loss, read_img, sample_coords, gen_grad
 from render import gaussian_2d_splatting, save_img
 
-filename = './data/bird_1000.jpg'
-# train_dataset = ImageData(filename, data_num=100, coord_num=2500)
-# train_loader = DataLoader(train_dataset, batch_size=10, num_workers=4, shuffle=True)
+filename = './data/ewm_1000.jpg'
 
 image_tensor = read_img(filename)
 grad_matrix = gen_grad(image_tensor)
@@ -49,7 +46,7 @@ for epoch in range(2001):
     
     if epoch%250 == 0 and epoch >= 1:
         recon_img = gaussian_2d_splatting(*model.img_size, model) # 支持超分辨率渲染
-        save_img(recon_img, epoch)
+        save_img(recon_img, epoch, loss)
         loss_matrix = compute_l1_loss(recon_img, model.image_tensor)
         model.add_params(0, 250, loss_matrix.to('cpu'))
         optimizer = optim.Adam([

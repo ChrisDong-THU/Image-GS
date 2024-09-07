@@ -29,7 +29,7 @@ def gaussian_2d_splatting(h, w, model):
     
     return image_tensor
 
-def save_img(image_tensor, epoch):
+def save_img(image_tensor, epoch, loss):
     image_np = (image_tensor * 255).clamp(0, 255).to(torch.uint8).numpy()
     image = Image.fromarray(image_np)
-    image.save(f'./tmp/epoch_{epoch}.jpg')
+    image.save(f'./tmp/epoch_{epoch}_loss_{loss:.5f}.jpg')
